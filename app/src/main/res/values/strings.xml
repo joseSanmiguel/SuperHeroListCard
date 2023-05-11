@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">SuperHeroesApp</string>
+    <string name="hero1">Hercules</string>
+    <string name="hero2">Goku</string>
+    <string name="hero3">Ares</string>
+    <string name="hero4">God Of War</string>
+    <string name="hero5">Fenix</string>
+    <string name="hero6">Dragon</string>
+    <string name="description1">Super poderoso guerrero que tiene una fuerza descomunal.</string>
+    <string name="description2">Super sayayin que cuida el planeta tierra.</string>
+    <string name="description3">Dios de la guerra al cual todos los guerreros se encomiendan.</string>
+    <string name="description4">Kratos invencible del videojuego de ps4.</string>
+    <string name="description5">Ikki guerrero del Fenix que es capaz de renacer de sus propias cenizas.</string>
+    <string name="description6">Animal mitologico.</string>
+</resources>
