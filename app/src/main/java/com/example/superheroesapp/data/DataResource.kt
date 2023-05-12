@@ -1,7 +1,5 @@
 package com.example.superheroesapp.data
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,7 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,61 +30,45 @@ fun HeroesApp() {
             items(heroes) {
                 SuperHeroCard(
                     hero = it,
-                    modifier = Modifier.padding(8.dp)
+                    modifier = Modifier.padding(16.dp)
                 )
             }
         }
     }
 }
 
-// I could not make that images ant text where aligned.
 @Composable
-fun SuperHeroCard(modifier: Modifier = Modifier, hero: Hero) {
+fun SuperHeroCard(hero: Hero,
+                  modifier: Modifier = Modifier) {
     Card(
+        elevation = 2.dp, backgroundColor = Color.Cyan,
         modifier = Modifier
             .padding(16.dp)
-            .clip(MaterialTheme.shapes.medium),
-        elevation = 2.dp, backgroundColor = Color.Cyan
+            .clip(MaterialTheme.shapes.medium)
     ) {
         Row(modifier = Modifier
-            .padding(16.dp)
-            .sizeIn(72.dp)
             .fillMaxWidth()
+            .padding(16.dp)
+            .sizeIn(minHeight = 72.dp)
             ) {
-            HeroText(
-                name = hero.nameRes,
-                description = hero.descriptionRes,
+            Column (modifier = Modifier.weight(1f)) {
+                Text(
+                    stringResource(hero.nameRes),
+                    style = MaterialTheme.typography.headlineLarge)
+                Text(
+                    stringResource(id = hero.descriptionRes),
+                    style = MaterialTheme.typography.bodySmall)
+            }
+            Spacer(modifier = Modifier.width(8.dp))
+            Image(
                 modifier = Modifier
+                    .size(72.dp)
+                    .clip(MaterialTheme.shapes.small),
+                painter = painterResource(hero.imageRes),
+                contentDescription = null
             )
-            Spacer(modifier = Modifier.padding(8.dp))
-            HeroImage(image = hero.imageRes)
         }
     }
-}
-
-//This area make the Text resources that will bring the information from the list
-@Composable
-fun HeroText(@StringRes name: Int, @StringRes description: Int, modifier: Modifier = Modifier) {
-    Column (modifier = Modifier) {
-        Text(
-            stringResource(id = name),
-            style = MaterialTheme.typography.headlineLarge)
-        Text(
-            stringResource(id = description),
-            style = MaterialTheme.typography.bodySmall)
-    }
-}
-
-//This area make the Image resource that will bring the information from the list
-@Composable
-fun HeroImage(@DrawableRes image: Int, modifier: Modifier = Modifier) {
-    Image(
-        modifier = Modifier
-            .clip(MaterialTheme.shapes.small)
-            .size(40.dp),
-        painter = painterResource(id = image),
-        contentDescription = null
-    )
 }
 
 @Preview
